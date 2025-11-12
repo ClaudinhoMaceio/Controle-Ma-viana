@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="Gerenciamento dos Sistemas MA-VIANA - Painel de acesso centralizado futurista">
+    <meta name="theme-color" content="#0a0e27">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MA-VIANA">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Gerenciamento dos Sistemas MA-VIANA</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="icons/gerar_icone.png">
+    <link rel="apple-touch-icon" href="icons/gerar_icone.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/gerar_icone.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/gerar_icone.png">
+</head>
+<body>
+    <!-- Tela de Carregamento -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <div class="logo-glow"></div>
+                <img src="icons/gerar_icone.png" alt="MA-VIANA" class="logo-image">
+            </div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+            <p class="loader-text">Inicializando sistemas...</p>
+        </div>
+    </div>
+
+    <!-- Menu Principal -->
+    <div id="main-menu" class="view active">
+        <header class="main-header">
+            <div class="header-background"></div>
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo-icon">
+                        <div class="logo-glow-small"></div>
+                        <img src="icons/gerar_icone.png" alt="MA-VIANA" class="logo-image-small">
+                    </div>
+                    <h1>MA-VIANA</h1>
+                </div>
+                <div id="status-indicator" class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span id="status-text">Online</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="systems-container">
+                <div class="system-button" 
+                     data-system="Contrato Compra/Venda Máquina"
+                     data-url="https://claudinhomaceio.github.io/CONTRATO-DE-COMPRA-E-VENDA-DE-MAQUINA-/">
+                    <div class="system-button-bg"></div>
+                    <div class="system-icon-wrapper">
+                        <div class="system-icon">📄</div>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <div class="system-title">Contrato Compra/Venda</div>
+                    <div class="system-subtitle">Sistema de Contratos</div>
+                    <div class="system-arrow">→</div>
+                </div>
+
+                <div class="system-button" 
+                     data-system="Controle de Medição (MA-VIANA)"
+                     data-url="https://claudinhomaceio.github.io/-CONTROLE-DE-MEDI-O-MA-VIANA/">
+                    <div class="system-button-bg"></div>
+                    <div class="system-icon-wrapper">
+                        <div class="system-icon">📏</div>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <div class="system-title">Controle de Medição</div>
+                    <div class="system-subtitle">Sistema MA-VIANA</div>
+                    <div class="system-arrow">→</div>
+                </div>
+
+                <div class="system-button" 
+                     data-system="Proposta de Locação"
+                     data-url="https://claudinhomaceio.github.io/MA-VIANA/">
+                    <div class="system-button-bg"></div>
+                    <div class="system-icon-wrapper">
+                        <div class="system-icon">⚙️</div>
+                        <div class="icon-glow"></div>
+                    </div>
+                    <div class="system-title">Proposta de Locação</div>
+                    <div class="system-subtitle">Sistema de Propostas</div>
+                    <div class="system-arrow">→</div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-content">
+                <p>© 2024 MA-VIANA Systems Manager</p>
+                <div class="footer-particles"></div>
+            </div>
+        </footer>
+        
+        <!-- Botão de Instalação PWA -->
+        <div id="install-banner" class="install-banner hidden">
+            <div class="install-banner-content">
+                <div class="install-icon">📱</div>
+                <div class="install-text">
+                    <strong>Instalar MA-VIANA</strong>
+                    <span>Tenha acesso rápido direto do seu dispositivo</span>
+                </div>
+                <button id="install-button" class="install-button">
+                    <span class="install-button-icon">⬇️</span>
+                    <span>Instalar</span>
+                </button>
+                <button id="install-close" class="install-close" aria-label="Fechar">×</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View do Sistema (iframe) -->
+    <div id="system-view" class="view">
+        <header class="system-header">
+            <button id="back-button" class="back-button">
+                <span class="back-icon">←</span>
+                <span class="back-text">Voltar</span>
+            </button>
+            <div class="system-header-title">
+                <span id="current-system-name">Sistema</span>
+            </div>
+            <div class="header-spacer"></div>
+        </header>
+        <div class="iframe-container">
+            <div id="loading-overlay" class="loading-overlay">
+                <div class="loading-spinner">
+                    <div class="spinner-ring"></div>
+                    <div class="spinner-ring"></div>
+                    <div class="spinner-ring"></div>
+                </div>
+                <p>Carregando sistema...</p>
+            </div>
+            <iframe id="system-iframe" 
+                    src="" 
+                    frameborder="0" 
+                    allowfullscreen
+                    allow="fullscreen; geolocation; microphone; camera"
+                    sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Animação de Máquinas Pesadas -->
+    <div class="machines-background">
+        <canvas id="machines-canvas"></canvas>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
