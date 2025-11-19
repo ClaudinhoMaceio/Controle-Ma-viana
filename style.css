@@ -46,6 +46,18 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Permitir que popups de download apareçam mesmo com overflow hidden */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 99998;
+}
+
 /* Animação de Máquinas Pesadas */
 .machines-background {
     position: fixed;
@@ -189,7 +201,7 @@ body {
     top: 0;
     left: 0;
     z-index: 1;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .view.active {
@@ -499,6 +511,7 @@ body {
     display: none;
     flex-direction: column;
     z-index: 1000;
+    overflow: visible;
 }
 
 #system-view.active {
@@ -574,7 +587,7 @@ body {
     width: 100%;
     height: 100%;
     min-height: 0;
-    overflow: hidden;
+    overflow: visible;
 }
 
 #system-iframe {
@@ -583,6 +596,8 @@ body {
     border: none;
     background: var(--bg-primary);
     display: block;
+    position: relative;
+    z-index: 1;
 }
 
 .loading-overlay {
@@ -934,4 +949,21 @@ body {
     .install-banner-content {
         padding: 1.25rem 1.5rem;
     }
+}
+
+/* Garantir que popups de download não sejam cobertos */
+.iframe-container {
+    isolation: isolate;
+}
+
+/* Permitir que diálogos do navegador apareçam acima de tudo */
+dialog,
+[role="dialog"] {
+    z-index: 99999 !important;
+}
+
+/* Garantir que o iframe tenha espaço suficiente e permita popups */
+#system-iframe {
+    min-height: 100%;
+    isolation: isolate;
 }

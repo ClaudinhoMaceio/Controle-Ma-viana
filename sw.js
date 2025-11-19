@@ -1,6 +1,6 @@
 // Nome do cache
-const CACHE_NAME = 'ma-viana-pwa-v2';
-const RUNTIME_CACHE = 'ma-viana-runtime-v2';
+const CACHE_NAME = 'ma-viana-pwa-v3';
+const RUNTIME_CACHE = 'ma-viana-runtime-v3';
 
 // Arquivos essenciais para cache (shell do app)
 const STATIC_ASSETS = [
