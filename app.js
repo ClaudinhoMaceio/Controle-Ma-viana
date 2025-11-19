@@ -447,6 +447,13 @@ function showView(viewId) {
     if (view) {
         view.classList.add('active');
         AppState.currentView = viewId;
+        
+        // Gerenciar classe do body para permitir popups
+        if (viewId === 'system-view') {
+            document.body.classList.add('system-view-active');
+        } else {
+            document.body.classList.remove('system-view-active');
+        }
     }
 }
 
@@ -464,6 +471,9 @@ function openSystem(system) {
     // Atualizar nome do sistema
     systemName.textContent = system.name;
     
+    // Adicionar classe ao body para permitir popups de download
+    document.body.classList.add('system-view-active');
+    
     // Mostrar loading
     loadingOverlay.classList.remove('hidden');
     
@@ -477,6 +487,9 @@ function openSystem(system) {
         }, 500);
     };
     
+    // Garantir que o iframe possa fazer downloads
+    iframe.setAttribute('allow', 'fullscreen; geolocation; microphone; camera; download');
+    
     // Mostrar view do sistema
     showView('system-view');
     
@@ -487,6 +500,9 @@ function openSystem(system) {
 function goBack() {
     const iframe = document.getElementById('system-iframe');
     const loadingOverlay = document.getElementById('loading-overlay');
+    
+    // Remover classe do body
+    document.body.classList.remove('system-view-active');
     
     // Limpar iframe
     iframe.src = '';

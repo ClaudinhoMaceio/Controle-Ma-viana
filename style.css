@@ -46,16 +46,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Permitir que popups de download apareçam mesmo com overflow hidden */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: 99998;
+/* Permitir que popups de download apareçam quando sistema estiver aberto */
+body.system-view-active {
+    overflow: visible;
+    /* Manter position fixed mas permitir que popups apareçam */
 }
 
 /* Animação de Máquinas Pesadas */
@@ -512,6 +506,8 @@ body::before {
     flex-direction: column;
     z-index: 1000;
     overflow: visible;
+    /* Garantir que popups de download apareçam */
+    contain: none;
 }
 
 #system-view.active {
@@ -588,6 +584,9 @@ body::before {
     height: 100%;
     min-height: 0;
     overflow: visible;
+    /* Garantir que popups não sejam bloqueados */
+    contain: none;
+    isolation: isolate;
 }
 
 #system-iframe {
@@ -951,19 +950,37 @@ body::before {
     }
 }
 
-/* Garantir que popups de download não sejam cobertos */
-.iframe-container {
-    isolation: isolate;
-}
-
 /* Permitir que diálogos do navegador apareçam acima de tudo */
 dialog,
-[role="dialog"] {
+[role="dialog"],
+input[type="file"],
+select {
     z-index: 99999 !important;
+    position: fixed !important;
 }
 
 /* Garantir que o iframe tenha espaço suficiente e permita popups */
 #system-iframe {
     min-height: 100%;
     isolation: isolate;
+    /* Permitir que downloads funcionem */
+    pointer-events: auto;
+}
+
+/* Garantir que footer não cubra popups */
+.main-footer {
+    position: relative;
+    z-index: 1;
+}
+
+/* Garantir que nenhum elemento cubra a parte inferior */
+#system-view::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    pointer-events: none;
+    z-index: -1;
 }
