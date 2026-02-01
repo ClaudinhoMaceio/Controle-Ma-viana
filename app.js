@@ -22,6 +22,11 @@ const AppState = {
             name: 'Proposta de Locação',
             url: 'https://claudinhomaceio.github.io/MA-VIANA/',
             icon: '⚙️'
+        },
+        {
+            name: 'BOTA FORA',
+            url: 'https://radiant-truffle-e5d464.netlify.app/',
+            icon: '🚀'
         }
     ]
 };

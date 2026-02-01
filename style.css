@@ -754,6 +754,10 @@ body.system-view-active {
     animation-delay: 0.3s;
 }
 
+.system-button:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
 /* Acessibilidade */
 .system-button:focus,
 .back-button:focus {
